@@ -23,6 +23,9 @@ export default {
   },
   mounted() {
     this.$axios.get('https://hkdev.external.housesigma.com/apiex/profile/me').then((response) => {
+      if (response.data.error.code === 401) {
+        location.href = response.data.redirect_uri
+      }
       this.user = response.data.data.user
     })
   },
