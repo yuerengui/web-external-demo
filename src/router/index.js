@@ -7,6 +7,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    alias: '/index',
     name: 'Home',
     component: Home
   },
