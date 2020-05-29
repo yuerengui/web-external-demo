@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <span v-if="user && user.email">{{ user.email }}</span>
+    <a href="https://hkdev.external.housesigma.com/apiex/auth/login" target="_blank" v-else>Login</a>
   </div>
 </template>
 
@@ -8,9 +9,14 @@
 
 export default {
   name: 'Home',
-  created() {
-    this.$axios.get('https://hkdev.external.housesigma.com/apiex/index').then((response) => {
-      console.log(response)
+  data() {
+    return {
+      user: null
+    }
+  },
+  mounted() {
+    this.$axios.get('https://hkdev.external.housesigma.com/apiex/profile/me').then((response) => {
+      this.user = response.data.data.user
     })
   }
 }
