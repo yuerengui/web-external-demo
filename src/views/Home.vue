@@ -5,6 +5,7 @@
     <button @click="logout" v-if="user && user.email">logout</button>
     <br/><br/>
     <button @click="profile">get profile</button>
+    <br/><br/>
     <textarea name="" id="" cols="30" rows="10" v-model="test_ajax">
     </textarea>
   </div>
@@ -28,7 +29,7 @@ export default {
   methods: {
     profile() {
       this.$axios.get('https://hkdev.external.housesigma.com/apiex/profile/me').then((response) => {
-        this.test_ajax = response.data.data.user
+        this.test_ajax = JSON.stringify(response.data.data.user)
       })
     },
     logout() {
